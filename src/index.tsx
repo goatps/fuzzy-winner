@@ -14,6 +14,7 @@ import {
 import * as serviceWorker from "./serviceWorker"
 import Signup from "./SignUp/SignUp";
 import Navbar from "./components/Navbar/Navbar";
+import SignIn from "./SignIn/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
   {
     path: "/sign-up",
     element: <Signup />
-  }
+  },
+  {
+    path: "/sign-in",
+    element: <SignIn />
+  },
 ]);
 
 const container = document.getElementById("root")

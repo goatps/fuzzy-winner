@@ -21,6 +21,13 @@ export const App = () => {
             SignUp
         </Button>
       </Link>
+      <Link
+        href="/sign-in"
+      >
+        <Button>
+            Sign In
+        </Button>
+      </Link>
     </>
   )
 }
