@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
     Flex,
     Box,
@@ -13,7 +14,17 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   
-function SignIn() {
+const SignIn = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  }
     return (
       <Flex
         minH={'100vh'}
@@ -35,11 +46,19 @@ function SignIn() {
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input 
+                  type  = "email"
+                  value = {email} 
+                  onChange = {handleEmailChange}
+                />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input 
+                  type="password" 
+                  value={password}
+                  onChange = {handlePasswordChange}
+                />
               </FormControl>
               <Stack spacing={10}>
                 <Stack
