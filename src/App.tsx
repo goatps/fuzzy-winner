@@ -1,9 +1,7 @@
 import * as React from "react"
 import {
-  ChakraProvider,
   Heading,
   Link,
-  theme,
   Button,
 } from "@chakra-ui/react"
 // import Navbar from "./components/Navbar/Navbar"
