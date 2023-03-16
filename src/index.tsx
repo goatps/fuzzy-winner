@@ -15,6 +15,7 @@ import * as serviceWorker from "./serviceWorker"
 import Signup from "./SignUp/SignUp";
 import Navbar from "./components/Navbar/Navbar";
 import SignIn from "./SignIn/SignIn";
+import Todos from "./Todo/Todos";
 
 // Creating a router to handle the routes
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     path: "/Sign-In",
     element: <SignIn />,
   },
+  {
+    path: "/todos",
+    element: <Todos />
+  }
 ]);
 
 const container = document.getElementById("root");
