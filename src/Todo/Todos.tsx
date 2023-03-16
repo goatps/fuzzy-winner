@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, GridItem, 
+import { Box, Button, Divider, Grid, GridItem, 
          Heading, IconButton, Text, 
          useColorModeValue 
 } from '@chakra-ui/react';
@@ -39,6 +39,7 @@ const Todos = () => {
                         <Box
                             p = "1em"
                             mt = "1em"
+                            overflow= "auto"
                             bg={useColorModeValue("white", "gray.700")}
                             borderRadius= "lg"
                             // color = "black"
@@ -54,9 +55,16 @@ const Todos = () => {
                             >
                                 demo task
                             </Text>
+                            <Divider />
+                            <Text
+                                fontSize= "sm"
+                            >
+                                Created At: DDMMYYYY HHMMSS
+                            </Text>
                             <IconButton
                                 mt = "0.5em" 
                                 colorScheme= "red"
+                                float = "right"
                                 color = {useColorModeValue("white", "black")}
                                 bg={useColorModeValue("red.400", "red.500")}
                                 aria-label='task completed icon' 
@@ -86,6 +94,7 @@ const Todos = () => {
                         <Box
                             p = "1em"
                             mt = "1em"
+                            overflow= "auto"
                             bg={useColorModeValue("white", "gray.700")}
                             borderRadius= "lg"
                             // color = "black"
@@ -101,8 +110,15 @@ const Todos = () => {
                             >
                                 demo task
                             </Text>
+                            <Divider />
+                            <Text
+                                fontSize= "sm"
+                            >
+                                Created At: DDMMYYYY HHMMSS
+                            </Text>
                             <IconButton
                                 mt = "0.5em" 
+                                float= "right"
                                 colorScheme= "green"
                                 aria-label='task completed icon' 
                                 icon={<CheckIcon />}
@@ -130,6 +146,7 @@ const Todos = () => {
                         <Box
                             p = "1em"
                             mt = "1em"
+                            overflow= "auto"
                             bg={useColorModeValue("white", "gray.700")}
                             borderRadius= "lg"
                             // color = "black"
@@ -145,13 +162,22 @@ const Todos = () => {
                             >
                                 demo task
                             </Text>
-                            <Button
-                                mt = "0.5em"
-                                colorScheme="green"
-                                isDisabled
-                            >
-                                Task Completed
-                            </Button>
+                            <Divider />
+                            <Box>
+                                <Text
+                                    fontSize= "sm"
+                                >
+                                    Created At: DDMMYYYY HHMMSS
+                                </Text>
+                                <Button
+                                    mt = "0.5em"
+                                    colorScheme="green"
+                                    float= "right"
+                                    isDisabled
+                                >
+                                    Task Completed
+                                </Button>
+                            </Box>
                         </Box>
                     </Box>
                 </GridItem>
