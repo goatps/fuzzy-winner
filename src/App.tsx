@@ -3,29 +3,56 @@ import {
   Heading,
   Link,
   Button,
+  Flex,
 } from "@chakra-ui/react"
 // import Navbar from "./components/Navbar/Navbar"
 
 export const App = () => {
   return (
     <>
-      <Heading>
-        This is home
+      <Heading
+        textAlign="center"
+      >
+        Welcome to FocusFlow
       </Heading>
-      <Link
-        href="/sign-up"
+      <Flex
+        justify="center"
       >
-        <Button>
-            SignUp
-        </Button>
-      </Link>
-      <Link
-        href="/sign-in"
-      >
-        <Button>
-            Sign In
-        </Button>
-      </Link>
+        <Link
+          display="block"
+          href="/sign-up"
+          textDecoration= "none"
+          _hover={{
+            textDecoration: "none"
+          }}        
+        >
+          <Button
+            w = "2xs"
+            mt = "1em"
+            display="block"
+            colorScheme= "teal"
+          >
+              SignUp
+          </Button>
+        </Link>
+        <Link
+          display="block"
+          href="/sign-in"
+          textDecoration= "none"
+          _hover={{
+            textDecoration: "none"
+          }}        
+        >
+          <Button
+            w = "2xs"
+            mt = "1em"
+            display="block"
+            colorScheme= "teal"
+          >
+              Sign In
+          </Button>
+        </Link>
+      </Flex>
     </>
   );
 };
