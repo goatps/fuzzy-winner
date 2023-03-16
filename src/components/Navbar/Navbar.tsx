@@ -16,6 +16,7 @@ import {
   useColorMode,
   Center,
   HStack,
+  Heading,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
@@ -47,7 +48,12 @@ const Navbar = () => {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <HStack spacing={8} alignItems={"center"}>
             <Link href="/">
-              <Box>Logo</Box>
+              <Heading
+                as = "h3"
+                size= "md"
+              >
+                FocusFlow
+              </Heading>
             </Link>
             <HStack
               as={"nav"}
