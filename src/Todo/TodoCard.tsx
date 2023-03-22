@@ -10,10 +10,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-
 export default function TodoCard(props: any) {
   return (
-    <div>
+    <>
       <Box
         p="1em"
         mt="1em"
@@ -40,6 +39,6 @@ export default function TodoCard(props: any) {
           icon={<ArrowRightIcon />}
         />
       </Box>
-    </div>
+    </>
   );
 }

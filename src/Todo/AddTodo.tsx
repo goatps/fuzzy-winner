@@ -39,9 +39,9 @@ export default function AddTodo(props: any) {
     setTitle("");
     setDescription(""); 
   };
-  
+
   return (
-    <div>
+    <>
       <Button onClick={onOpen} colorScheme="blue" mt={4} width="100%">
         ADD TASK
       </Button>
@@ -81,6 +81,6 @@ export default function AddTodo(props: any) {
           </form>
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 }

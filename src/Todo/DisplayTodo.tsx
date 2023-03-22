@@ -2,7 +2,7 @@ import React from "react";
 import TodoCard from "./TodoCard";
 
 export default function DisplayTodo(props: any) {
-  return <div>
+  return <>
             {
             props.tasks.map((task: any) => {
                 return (
@@ -16,5 +16,5 @@ export default function DisplayTodo(props: any) {
             }
             )
         }
-  </div>;
+  </>;
 }
