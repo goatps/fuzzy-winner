@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import {
   Button,
@@ -37,18 +38,11 @@ export default function AddTodo(props: any) {
     props.onAddTodo(title, description);
     onClose();
     setTitle("");
-    setDescription(""); 
+    setDescription("");
   };
 
-  return (
-    <>
-      <Button onClick={onOpen} colorScheme="blue" mt={4} width="100%">
-        ADD TASK
-      </Button>
-      {/* <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button> */}
-
+  const ModalsOverlay = () => {
+    return (
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -63,12 +57,19 @@ export default function AddTodo(props: any) {
             <ModalBody pb={6}>
               <FormControl isRequired>
                 <FormLabel>TITLE</FormLabel>
-                <Input ref={initialRef} placeholder="Title" onChange={titleChangeHandler} />
+                <Input
+                  ref={initialRef}
+                  placeholder="Title"
+                  onChange={titleChangeHandler}
+                />
               </FormControl>
 
               <FormControl mt={4} isRequired>
                 <FormLabel>DESCRIPTION</FormLabel>
-                <Textarea placeholder="Description" onChange={descriptionChangeHandler} />
+                <Textarea
+                  placeholder="Description"
+                  onChange={descriptionChangeHandler}
+                />
               </FormControl>
             </ModalBody>
 
@@ -81,6 +82,21 @@ export default function AddTodo(props: any) {
           </form>
         </ModalContent>
       </Modal>
+    );
+  };
+
+  return (
+    <>
+      <Button onClick={onOpen} colorScheme="blue" mt={4} width="100%">
+        ADD TASK
+      </Button>
+      {/* <Button ml={4} ref={finalRef}>
+        I'll receive focus on close
+      </Button> */}
+      {ReactDOM.createPortal(
+        <ModalsOverlay />,
+        document.getElementById("overlay-root")!
+      )}
     </>
   );
 }
