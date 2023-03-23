@@ -10,6 +10,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+
+
 export default function TodoCard(props: any) {
   return (
     <>
@@ -33,11 +35,13 @@ export default function TodoCard(props: any) {
           mt="0.5em"
           colorScheme="red"
           float="right"
+          id={props.id}
           color={useColorModeValue("white", "black")}
           bg={useColorModeValue("red.400", "red.500")}
           aria-label="task completed icon"
           icon={<ArrowRightIcon />}
         />
+        
       </Box>
     </>
   );

@@ -6,12 +6,10 @@ import {
   Grid,
   GridItem,
   Heading,
-  IconButton,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { CheckIcon } from "@chakra-ui/icons";
 import AddTodo from "./AddTodo";
 import DisplayTodo from "./DisplayTodo";
 
@@ -39,9 +37,30 @@ const Todos = () => {
       status: "created",
       createdAt: "16-12-2020",
     },
+    {
+      id: 4,
+      title: "Task 4",
+      description: "This is task 4",
+      status: "ongoing",
+      createdAt: "17-12-2020",
+    },
+    {
+      id: 5,
+      title: "Task 5",
+      description: "This is task 5",
+      status: "ongoing",
+      createdAt: "18-12-2020",
+    },
+    {
+      id: 6,
+      title: "Task 6",
+      description: "This is task 6",
+      status: "completed",
+      createdAt: "19-12-2020",
+    },
   ]);
 
-// Add Todo from form
+  // Add Todo from form
   const addTodoHandler = (title: string, description: string) => {
     const newTask = {
       id: Math.random(),
@@ -54,7 +73,6 @@ const Todos = () => {
       return prevTaskList.concat(newTask);
     });
   };
-
 
   return (
     <>
@@ -84,10 +102,10 @@ const Todos = () => {
             </Heading>
 
             {/* Display All Todo Data */}
-            <DisplayTodo tasks={taskList} />
+            <DisplayTodo tasks={taskList} status="created" />
 
             {/* Add Todo Form */}
-            <AddTodo onAddTodo={addTodoHandler}/>
+            <AddTodo onAddTodo={addTodoHandler} />
           </Box>
         </GridItem>
 
@@ -105,30 +123,8 @@ const Todos = () => {
             >
               Ongoing Task
             </Heading>
-            <Box
-              p="1em"
-              mt="1em"
-              overflow="auto"
-              bg={useColorModeValue("white", "gray.700")}
-              borderRadius="lg"
-              // color = "black"
-            >
-              <Heading as="h5" size="xs">
-                Task heading
-              </Heading>
-              <Text color={useColorModeValue("gray", "whiteAlpha.500")}>
-                demo task
-              </Text>
-              <Divider />
-              <Text fontSize="sm">Created At: DDMMYYYY HHMMSS</Text>
-              <IconButton
-                mt="0.5em"
-                float="right"
-                colorScheme="green"
-                aria-label="task completed icon"
-                icon={<CheckIcon />}
-              />
-            </Box>
+            {/* Display All Todo Data */}
+            <DisplayTodo tasks={taskList} status="ongoing" />
           </Box>
         </GridItem>
         <GridItem colSpan={3} width="100%">
@@ -145,28 +141,8 @@ const Todos = () => {
             >
               Completed Task
             </Heading>
-            <Box
-              p="1em"
-              mt="1em"
-              overflow="auto"
-              bg={useColorModeValue("white", "gray.700")}
-              borderRadius="lg"
-              // color = "black"
-            >
-              <Heading as="h5" size="xs">
-                Task heading
-              </Heading>
-              <Text color={useColorModeValue("gray", "whiteAlpha.500")}>
-                demo task
-              </Text>
-              <Divider />
-              <Box>
-                <Text fontSize="sm">Created At: DDMMYYYY HHMMSS</Text>
-                <Button mt="0.5em" colorScheme="green" float="right" isDisabled>
-                  Task Completed
-                </Button>
-              </Box>
-            </Box>
+            {/* Display All Todo Data */}
+            <DisplayTodo tasks={taskList} status="completed" />
           </Box>
         </GridItem>
       </Grid>
