@@ -44,7 +44,7 @@ export default function TodoCard(props: any) {
             // color={useColorModeValue("white", "black")}
             bg={props.status === "created"? arrowColor: checkColor}
             aria-label="task completed icon"
-            icon={ props.status === 'ongoing'? <CheckIcon /> : <ArrowRightIcon />}
+            icon={ icon }
           />)
           :
           <Button
