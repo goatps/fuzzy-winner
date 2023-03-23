@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import {
   Box,
-  Button,
-  Divider,
+  // Button,
+  // Divider,
   Grid,
   GridItem,
   Heading,
-  Text,
+  // Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 

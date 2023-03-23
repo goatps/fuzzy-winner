@@ -1,8 +1,9 @@
 import React from "react";
-import { ArrowRightIcon } from "@chakra-ui/icons";
+import { ArrowRightIcon, CheckIcon } from "@chakra-ui/icons";
 
 import {
   Box,
+  Button,
   Divider,
   Heading,
   IconButton,
@@ -13,6 +14,9 @@ import {
 
 
 export default function TodoCard(props: any) {
+  const icon = props.status === 'ongoing'? <CheckIcon /> : <ArrowRightIcon />;
+  const checkColor = useColorModeValue("green.400", "green.500"); 
+  const arrowColor = useColorModeValue("red.400", "red.500");
   return (
     <>
       <Box
@@ -31,17 +35,26 @@ export default function TodoCard(props: any) {
         </Text>
         <Divider />
         <Text fontSize="sm">{props.createdAt}</Text>
-        <IconButton
-          mt="0.5em"
-          colorScheme="red"
-          float="right"
-          id={props.id}
-          color={useColorModeValue("white", "black")}
-          bg={useColorModeValue("red.400", "red.500")}
-          aria-label="task completed icon"
-          icon={<ArrowRightIcon />}
-        />
-        
+        {props.status!== "completed"?
+          (<IconButton
+            mt="0.5em"
+            colorScheme={props.status === "ongoing"?"green": "red"}
+            float="right"
+            id={props.id}
+            // color={useColorModeValue("white", "black")}
+            bg={props.status === "created"? arrowColor: checkColor}
+            aria-label="task completed icon"
+            icon={ props.status === 'ongoing'? <CheckIcon /> : <ArrowRightIcon />}
+          />)
+          :
+          <Button
+            isDisabled
+            float="right"
+            colorScheme= "green"
+          >
+            Task Completed
+          </Button>
+        }
       </Box>
     </>
   );

@@ -9,6 +9,7 @@ export default function DisplayTodo(props: any) {
         .map((task: any) => {
           return (
             <TodoCard
+              status = {props.status}
               key={task.id}
               id={task.id}
               title={task.title}
