@@ -15,6 +15,8 @@ export default function DisplayTodo(props: any) {
               title={task.title}
               description={task.description}
               createdAt={task.createdAt}
+              onButtonClick={props.onButtonClick}
+              onDeleteClick={props.onDeleteClick}
             />
           );
         })}

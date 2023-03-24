@@ -1,22 +1,17 @@
 import React from "react";
-import { ArrowRightIcon, CheckIcon } from "@chakra-ui/icons";
+import { NotAllowedIcon } from "@chakra-ui/icons";
 
 import {
   Box,
-  Button,
   Divider,
   Heading,
   IconButton,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-
-
+import CustomButton from "../UI/CustomButton";
 
 export default function TodoCard(props: any) {
-  const icon = props.status === 'ongoing'? <CheckIcon /> : <ArrowRightIcon />;
-  const checkColor = useColorModeValue("green.400", "green.500"); 
-  const arrowColor = useColorModeValue("red.400", "red.500");
   return (
     <>
       <Box
@@ -35,26 +30,24 @@ export default function TodoCard(props: any) {
         </Text>
         <Divider />
         <Text fontSize="sm">{props.createdAt}</Text>
-        {props.status!== "completed"?
-          (<IconButton
-            mt="0.5em"
-            colorScheme={props.status === "ongoing"?"green": "red"}
-            float="right"
-            id={props.id}
-            // color={useColorModeValue("white", "black")}
-            bg={props.status === "created"? arrowColor: checkColor}
-            aria-label="task completed icon"
-            icon={ icon }
-          />)
-          :
-          <Button
-            isDisabled
-            float="right"
-            colorScheme= "green"
-          >
-            Task Completed
-          </Button>
-        }
+
+        <CustomButton
+          id={props.id}
+          status={props.status}
+          onButtonClick={props.onButtonClick}
+        ></CustomButton>
+        <IconButton
+          onClick={() => props.onDeleteClick(props.id)}
+          width="50px"
+          mr="0.5em"
+          height="50px"
+          mt="0.5em"
+          float="right"
+          colorScheme="red"
+          aria-label="Call Segun"
+          size="lg"
+          icon={<NotAllowedIcon />}
+        />
       </Box>
     </>
   );

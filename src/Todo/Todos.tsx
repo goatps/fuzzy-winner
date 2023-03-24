@@ -74,6 +74,25 @@ const Todos = () => {
     });
   };
 
+  const changeStatusHandler = (id: any) => {
+    const newTaskList = taskList.map((task) => {
+      if (task.id === id) {
+        if (task.status === "created") {
+          return { ...task, status: "ongoing" };
+        } else if (task.status === "ongoing") {
+          return { ...task, status: "completed" };
+        }
+      }
+      return task;
+    });
+    setTaskList(newTaskList);
+  };
+
+  const deleteTaskHandler = (id: any) => {
+    const newTaskList = taskList.filter((task) => task.id !== id);
+    setTaskList(newTaskList);
+  };
+
   return (
     <>
       <Heading>Hi this is todos</Heading>
@@ -102,7 +121,12 @@ const Todos = () => {
             </Heading>
 
             {/* Display All Todo Data */}
-            <DisplayTodo tasks={taskList} status="created" />
+            <DisplayTodo
+              tasks={taskList}
+              status="created"
+              onButtonClick={changeStatusHandler}
+              onDeleteClick={deleteTaskHandler}
+            />
 
             {/* Add Todo Form */}
             <AddTodo onAddTodo={addTodoHandler} />
@@ -124,7 +148,12 @@ const Todos = () => {
               Ongoing Task
             </Heading>
             {/* Display All Todo Data */}
-            <DisplayTodo tasks={taskList} status="ongoing" />
+            <DisplayTodo
+              tasks={taskList}
+              status="ongoing"
+              onButtonClick={changeStatusHandler}
+              onDeleteClick={deleteTaskHandler}
+            />
           </Box>
         </GridItem>
         <GridItem colSpan={3} width="100%">
@@ -142,7 +171,11 @@ const Todos = () => {
               Completed Task
             </Heading>
             {/* Display All Todo Data */}
-            <DisplayTodo tasks={taskList} status="completed" />
+            <DisplayTodo
+              tasks={taskList}
+              status="completed"
+              onDeleteClick={deleteTaskHandler}
+            />
           </Box>
         </GridItem>
       </Grid>

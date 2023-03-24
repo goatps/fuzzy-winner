@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import {
   Button,
@@ -41,8 +40,14 @@ export default function AddTodo(props: any) {
     setDescription("");
   };
 
-  const ModalsOverlay = () => {
-    return (
+  return (
+    <>
+      <Button onClick={onOpen} colorScheme="blue" mt={4} width="100%">
+        ADD TASK
+      </Button>
+      {/* <Button ml={4} ref={finalRef}>
+        I'll receive focus on close
+      </Button> */}
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -82,21 +87,6 @@ export default function AddTodo(props: any) {
           </form>
         </ModalContent>
       </Modal>
-    );
-  };
-
-  return (
-    <>
-      <Button onClick={onOpen} colorScheme="blue" mt={4} width="100%">
-        ADD TASK
-      </Button>
-      {/* <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button> */}
-      {ReactDOM.createPortal(
-        <ModalsOverlay />,
-        document.getElementById("overlay-root")!
-      )}
     </>
   );
 }
