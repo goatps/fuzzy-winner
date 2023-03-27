@@ -1,0 +1,39 @@
+@GetMapping("/listEmployee")
+    public  List<Users> listAllEmployees(){    
+            List<Users> listofEmployees = userService.getAllEmployees();
+            return listofEmployees;
+    }
+
+    @PostMapping("/signup")
+    public Users signUp(@RequestBody Users usr){
+        Users data = userService.addEmployee(usr);
+        return data;
+    }
+    @PostMapping("/authenticate")
+    public Users authenticate(@RequestBody Users usr){
+        Users data = userService.getAll(usr);
+        return data;
+    }
+
+    //servoec
+
+      public Users addEmployee(Users usr) {
+         return userRepository.save(usr);
+     }
+
+    public Users getAll(Users usr){
+        List<Users> list =  userRepository.findAll();
+        for(Users emp:list){
+           
+            if(emp.getEmail()==usr.getEmail()){
+                return emp;
+                //&& emp.getPassword()==usr.getPassword()
+            }
+        }
+        return usr;
+     }
+
+     public List<Users> getAllEmployees() {
+        List<Users> list= userRepository.findAll();
+        return list;
+    }
