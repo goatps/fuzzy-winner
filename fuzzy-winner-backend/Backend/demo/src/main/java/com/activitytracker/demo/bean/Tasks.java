@@ -15,15 +15,15 @@ public class Tasks {
     protected Tasks() {
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
-    
+   // @GeneratedValue(strategy = GenerationType.AUTO )
     private long id;
+    private long uid;
     private String title;
     private String description;
-    private String createdAt;
     private String status;
-
+    private String createdAt;
     
+
     public long getId() {
         return id;
     }
@@ -31,6 +31,16 @@ public class Tasks {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+
+    public long getUid() {
+        return uid;
+    }
+
+
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
 
@@ -72,10 +82,12 @@ public class Tasks {
     public void setStatus(String status) {
         this.status = status;
     }
+    
 
-
-    public Tasks(long id, String title,String description,String createdAt,String status){
+    
+    public Tasks(long id, long uid, String title,String description,String createdAt,String status){
         this.id=id;
+        this.uid = uid;
         this.title=title;
         this.description=description;
         this.createdAt=createdAt;

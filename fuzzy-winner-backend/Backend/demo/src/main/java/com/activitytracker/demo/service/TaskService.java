@@ -23,24 +23,29 @@ public class TaskService {
         return taskRepository.save(tsk);
     }
     
-    // //edit Task
-    // public Tasks editEmp(String id, Tasks tsk) {
-    //     long i =Integer.parseInt(id);
+    //edit Task
+    public Tasks editEmp(String id, Tasks tsk) {
+        long i =Integer.parseInt(id);
         
-    //     Tasks updateTask = taskRepository.findById(i).orElse(null);
+        Tasks updateTask = taskRepository.findById(i).orElse(null);
 
-    //     updateTask.setId(tsk.getId());
-    //     updateTask.setTasktitle(tsk.getTasktitle());
-    //     updateTask.setTask(tsk.getTask());
-    //     updateTask.setStartdate(tsk.getStartdate());
-    //     updateTask.setEnddate(tsk.getEnddate());
-    //     updateTask.setPending(tsk.getPending());
-    //     updateTask.setInprogress(tsk.getInprogress());
-    //     updateTask.setDone(tsk.getDone());
+        updateTask.setId(tsk.getId());
+        updateTask.setUid(tsk.getUid());
+        updateTask.setStatus(tsk.getStatus());
+        updateTask.setTitle(tsk.getTitle());
+        updateTask.setDescription(tsk.getDescription());
 
 
-    //     taskRepository.save(updateTask);
+        taskRepository.save(updateTask);
 
-    //     return null;
-    // }
+        return null;
+    }
+
+    public void delEmp(String id) {
+        long i =Integer.parseInt(id);
+        
+        Tasks delTask = taskRepository.findById(i).orElse(null);
+        taskRepository.delete(delTask);
+        
+    }
 }

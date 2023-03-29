@@ -10,12 +10,12 @@ import jakarta.persistence.Table;
 
 @Entity
 
-//@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
+//@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"uid"})})
 @Table(name = "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO )
-    private long id;
+    private long uid;
     private String name;
     private String email;
     private String password;
@@ -24,17 +24,17 @@ public class Users {
         
     }
     // Getter setters
-    public Users(long id, String name, String email, String password){
-        this.id=id;
+    public Users(long uid, String name, String email, String password){
+        this.uid=uid;
         this.name=name;
         this.email=email;
         this.password=password;
     }
     public long getId() {
-        return id;
+        return uid;
     }
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long uid) {
+        this.uid = uid;
     }
     public String getName() {
         return name;

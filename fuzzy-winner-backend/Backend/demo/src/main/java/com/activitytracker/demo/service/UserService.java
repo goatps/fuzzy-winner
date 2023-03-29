@@ -33,7 +33,7 @@ public class UserService {
                 
                 long check = user.getId();
                 for(Tasks task: taskList){
-                    if (task.getId() == check){
+                    if (task.getUid() == check){
                         TasksOfUser.add(task);
                     }
                 }
