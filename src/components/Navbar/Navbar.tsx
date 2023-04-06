@@ -16,11 +16,12 @@ import {
   useColorMode,
   Center,
   HStack,
+  Heading,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 // eslint-disable-next-line
-const Links = ["Sign-Up", "Sign-In", "About"];
+const Links = ["Sign-Up", "Sign-In", "Todos", ];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -46,7 +47,14 @@ const Navbar = () => {
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Link href="/">
+              <Heading
+                as = "h3"
+                size= "md"
+              >
+                FocusFlow
+              </Heading>
+            </Link>
             <HStack
               as={"nav"}
               spacing={4}
@@ -117,5 +125,6 @@ const Navbar = () => {
     </>
   );
 };
+
 
 export default Navbar;
