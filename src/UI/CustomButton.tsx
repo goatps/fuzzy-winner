@@ -13,7 +13,7 @@ export default function CustomButton(props: any) {
     } else if (status === "ongoing") {
       setStatus("completed");
     }
-    props.onButtonClick(props.id);
+    props.onButtonClick(props);
   };
 
   return (() => {
