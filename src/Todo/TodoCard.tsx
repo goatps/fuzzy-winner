@@ -1,5 +1,5 @@
 import React from "react";
-import { NotAllowedIcon } from "@chakra-ui/icons";
+import { NotAllowedIcon, EditIcon } from "@chakra-ui/icons";
 
 import {
   Box,
@@ -10,6 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import CustomButton from "../UI/CustomButton";
+import EditTodo from "./EditTodo";
 
 export default function TodoCard(props: any) {
   return (
@@ -36,6 +37,13 @@ export default function TodoCard(props: any) {
           status={props.status}
           onButtonClick={props.onButtonClick}
         ></CustomButton>
+        <EditTodo
+          id={props.id}
+          title={props.title}
+          description={props.description}
+          onEditClick={props.onEditClick}
+        ></EditTodo>
+
         <IconButton
           onClick={() => props.onDeleteClick(props.id)}
           width="50px"

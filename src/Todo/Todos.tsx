@@ -180,9 +180,37 @@ const Todos = (props: any) => {
       });
   };
 
+  const editTaskHandler = (editid: any, title: string, description: string) => {
+    //   const newTaskList = taskList.map((task) => {
+    //     if (task.id === id) {
+    //       return { ...task, title: title, description: description };
+    //     }
+    //     return task;
+    //   });
+    //   setTaskList(newTaskList);
+    axios
+      .put(`http://localhost:9091/editTasks/${editid}`, {
+        title: title,
+        description: description,
+      })
+      .then((response) => {
+        console.log(response.data);
+        const newTaskList: any = taskList.map((task: any) => {
+          if (task["id"] === editid) {
+            return { ...task, title: title, description: description };
+          }
+          return task;
+        });
+        setTaskList(newTaskList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
-      <Heading>Hi this is todos</Heading>
+      {/* <Heading>Hi this is todos</Heading> */}
       <Grid
         p="1em 2em"
         display="flex"
@@ -213,6 +241,7 @@ const Todos = (props: any) => {
               status="created"
               onButtonClick={changeStatusHandler}
               onDeleteClick={deleteTaskHandler}
+              onEditClick={editTaskHandler}
             />
 
             {/* Add Todo Form */}
@@ -240,6 +269,7 @@ const Todos = (props: any) => {
               status="ongoing"
               onButtonClick={changeStatusHandler}
               onDeleteClick={deleteTaskHandler}
+              onEditClick={editTaskHandler}
             />
           </Box>
         </GridItem>
@@ -262,6 +292,7 @@ const Todos = (props: any) => {
               tasks={taskList}
               status="completed"
               onDeleteClick={deleteTaskHandler}
+              onEditClick={editTaskHandler}
             />
           </Box>
         </GridItem>

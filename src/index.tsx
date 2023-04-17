@@ -1,17 +1,11 @@
 // import { ColorModeScript } from "@chakra-ui/react"
-import * as React from "react"
-import * as ReactDOM from "react-dom/client"
-import { App } from "./App"
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import reportWebVitals from "./reportWebVitals"
-import {
-  ChakraProvider,
-  theme,
-} from "@chakra-ui/react"
-import * as serviceWorker from "./serviceWorker"
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { App } from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import { ChakraProvider, theme } from "@chakra-ui/react";
+import * as serviceWorker from "./serviceWorker";
 import Signup from "./SignUp/SignUp";
 import Navbar from "./components/Navbar/Navbar";
 import SignIn from "./SignIn/SignIn";
@@ -31,10 +25,6 @@ const router = createBrowserRouter([
     path: "/Sign-In",
     element: <SignIn />,
   },
-  {
-    path: "/todos",
-    element: <Todos />
-  }
 ]);
 
 const container = document.getElementById("root");
@@ -47,9 +37,9 @@ root.render(
 
     {/* Adding ChakraUI by wrapping the whole app in ChakraProvider */}
     <ChakraProvider theme={theme}>
-    <Navbar />
-    <RouterProvider router={router}/>
-  </ChakraProvider>
+      <Navbar />
+      <RouterProvider router={router} />
+    </ChakraProvider>
     {/* <Navbar /> */}
   </React.StrictMode>
 );

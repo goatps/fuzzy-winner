@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Flex,
   Box,
@@ -12,9 +12,12 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Todos from "../Todo/Todos";
+// confetti
+import Confetti from "react-confetti";
 
 const SignIn = () => {
   // const [email, setEmail] = useState("");
@@ -33,6 +36,12 @@ const SignIn = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const toast = useToast();
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
@@ -65,6 +74,14 @@ const SignIn = () => {
           const tasklist = response.data;
           setData(tasklist);
           setDatafetch(true);
+          toast({
+            title: "Successfully signed in.",
+            description: "Here are your tasks",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+          setShowConfetti(true);
         } else {
           console.log("inside if");
           setError("Invalid email or password");
@@ -90,6 +107,24 @@ const SignIn = () => {
     // }
   };
 
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
+
+  useEffect(() => {
+    window.onresize = () => handleResize();
+    if (showConfetti) {
+      const timeout = setTimeout(() => {
+        setShowConfetti(false);
+      }, 6000);
+      return () => clearTimeout(timeout);
+    }
+  }, [showConfetti]);
+
   return (() => {
     if (datafetch === false) {
       return (
@@ -113,7 +148,6 @@ const SignIn = () => {
               bg="gray.50"
               _dark={{ bg: "gray.800" }}
               boxShadow={"lg"}
-              p={8}
             >
               {error && <div>{error}</div>}
               <Stack spacing={4}>
@@ -163,7 +197,12 @@ const SignIn = () => {
         </Flex>
       );
     } else {
-      return <Todos TaskData={data} />;
+      return (
+        <>
+        {showConfetti && <Confetti width={windowSize.width} height={windowSize.height} />}
+          <Todos TaskData={data} />
+        </>
+      );
     }
   })();
 };

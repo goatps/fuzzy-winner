@@ -21,7 +21,7 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 // eslint-disable-next-line
-const Links = ["Sign-Up", "Sign-In", "Todos", ];
+const Links = ["Sign-Up", "Sign-In" ];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link

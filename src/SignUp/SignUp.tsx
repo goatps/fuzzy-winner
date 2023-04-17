@@ -12,10 +12,16 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import SignIn from "../SignIn/SignIn";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -25,6 +31,8 @@ export default function Signup() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [isUserSignedUp, setIsUserSignedUp] = useState(false);
+  const toast = useToast();
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
@@ -54,6 +62,14 @@ export default function Signup() {
         console.log(response.data);
         setError("");
         // User is registered successfully
+        setIsUserSignedUp(true);
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
       })
       .catch((error) => {
         console.log(error.response);
@@ -65,94 +81,106 @@ export default function Signup() {
       });
   };
 
-  return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
-          </Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool features ✌️
-          </Text>
-          {error && <div>{error}</div>}
-        </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          w="md"
-          boxShadow={"lg"}
-          p={8}
+  return (() => {
+    if (isUserSignedUp) {
+      return (
+        <>
+          <SignIn />
+        </>
+      );
+    } else {
+      return (
+        <Flex
+          minH={"100vh"}
+          align={"center"}
+          justify={"center"}
+          bg="gray.50"
+          _dark={{ bg: "gray.800" }}
         >
-          <Stack spacing={4}>
-            <form onSubmit={handleSubmit}>
-              <FormControl id="firstName" isRequired>
-                <FormLabel>Name</FormLabel>
-                <Input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              </FormControl>
-              <FormControl id="email" isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-              </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    value={formData.password}
-                    onChange={handleInputChange}
-                  />
-                  <InputRightElement h={"full"}>
+          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+            <Stack align={"center"}>
+              <Heading fontSize={"4xl"} textAlign={"center"}>
+                Sign up
+              </Heading>
+              <Text fontSize={"lg"} color={"gray.600"}>
+                to enjoy all of our cool features ✌️
+              </Text>
+              {error && <div>{error}</div>}
+            </Stack>
+            <Box
+              rounded={"lg"}
+              bg="gray.50"
+              _dark={{ bg: "gray.800" }}
+              w="md"
+              boxShadow={"lg"}
+              
+            >
+              <Stack spacing={4}>
+                <form onSubmit={handleSubmit}>
+                  <FormControl id="firstName" isRequired>
+                    <FormLabel>Name</FormLabel>
+                    <Input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                    />
+                  </FormControl>
+                  <FormControl id="email" isRequired>
+                    <FormLabel>Email address</FormLabel>
+                    <Input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                    />
+                  </FormControl>
+                  <FormControl id="password" isRequired>
+                    <FormLabel>Password</FormLabel>
+                    <InputGroup>
+                      <Input
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        value={formData.password}
+                        onChange={handleInputChange}
+                      />
+                      <InputRightElement h={"full"}>
+                        <Button
+                          variant={"ghost"}
+                          onClick={() =>
+                            setShowPassword((showPassword) => !showPassword)
+                          }
+                        >
+                          {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                  </FormControl>
+                  <Stack spacing={10} pt={2}>
                     <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
+                      type="submit"
+                      loadingText="Submitting"
+                      size="lg"
+                      bg={"blue.400"}
+                      color={"white"}
+                      _hover={{
+                        bg: "blue.500",
+                      }}
                     >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                      Sign up
                     </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <Stack spacing={10} pt={2}>
-                <Button
-                  type="submit"
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                >
-                  Sign up
-                </Button>
+                  </Stack>
+                  <Stack pt={6}>
+                    <Text align={"center"}>
+                      Already a user? <Link color={"blue.400"}>Login</Link>
+                    </Text>
+                  </Stack>
+                </form>
               </Stack>
-              <Stack pt={6}>
-                <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
-                </Text>
-              </Stack>
-            </form>
+            </Box>
           </Stack>
-        </Box>
-      </Stack>
-    </Flex>
-  );
+        </Flex>
+      );
+    }
+  })();
 }
